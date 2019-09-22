@@ -77,15 +77,6 @@
                 <div class="product-desc">
                     <h6 class="text-desc" id="book-title"></h6><br>
                     <h3 class="description" id="book-description">Description</h3>
-                    <!-- <p class="product-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p> -->
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
@@ -96,7 +87,7 @@
                         </div> -->
                     </div>
                     <hr>
-                    <button class="btn order-button pull-right" name="java" price="3000" onclick="addBook(`${book.id}`)" >Add to Cart</button>
+                    <button class="btn order-button pull-right" name="java" price="3000" onclick="addBook(`${book.id}`)" >Buy Now</button>
                 </div>
             </div>
         </div>
@@ -118,6 +109,15 @@
                         <div class="row">
                             <div class="table-responsive">
                                 <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
                                     <tbody id="cartTable">
 
                                     </tbody>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn continue-shopping">Continue Shopping</button>
                     <button class="btn order-button" onclick="payWithRave()" >Checkout</button>
                 </div>
             </div>
@@ -240,7 +240,7 @@
                 <tr>
                     <td><img src="${cart.img}" alt=""></td>
                     <td class="td_style">${cart.name}</td>
-                    <td class="td_style">${cart.description}</td>
+                   
                     <td class="td_style"><s>N</s>${cart.price}</td>
                     <td class="td_style"><span class="btn btn-danger text-white">Delete</span></td>
                 </tr>

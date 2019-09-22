@@ -114,12 +114,19 @@ input:focus {
     border: none !important;
 }
 
-.order-button {
+.continue-shopping{
     background-color: #fff !important;
     color: #960000;
     font-weight: 400;
-    border-radius: 0px !important;
     border:  solid 1px #960000 !important;
+    border-radius: 0px !important;
+}
+
+.order-button {
+    background-color: #960000 !important;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 0px !important;
     float: right !important;
 }
 
