@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Rave Inline</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="asset/css/bootstrap.css">
+    <link rel="stylesheet" href="asset/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    <nav class="navbar navbar-expand-lg navbar-nav navbar-style">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item active">
+                    <a class="nav-link navbar-link-style" href="#">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link navbar-link-style" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link navbar-link-style dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li> -->
+    
+                <li class="nav-item">
+                    <a class="nav-link navbar-link-style">
+                        <i class="fa fa-shopping-cart"aria-hidden="true" id="cartLength" data-toggle="modal" data-target="#card"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar ends here -->
+
+    <!-- Search Bar -->
+    <!-- <div class="container search">
+        <div class="row">
+            <div class="input-group search-style">
+                <input type="text" class="form-control input-style" placeholder="Search for your favourite book"
+                    style="width: 60px;">
+                <div class="input-group-append">
+                    <button class="btn search-button">Search</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container single-product-margin">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-image">
+                    <div class="">
+                        <img src="" id="book-img" class="single-product-style">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-desc">
+                    <h6 class="text-desc" id="book-title"></h6><br>
+                    <h3 class="description" id="book-description">Description</h3>
+                    <!-- <p class="product-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p> -->
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="pull-left product-price"><s >N</s><b id="book-price"></b></h4>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <h4 class="pull-right product-price"><s>N</s>3,000</h4>
+                        </div> -->
+                    </div>
+                    <hr>
+                    <button class="btn order-button pull-right" name="java" price="3000" onclick="addBook(`${book.id}`)" >Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="card" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Your Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody id="cartTable">
+
+                                    </tbody>
+                                    <tbody>
+                                        <tr>
+                                            <td><b>Total</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="td_style"><b><s>N</s></b> <b id="total"></b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button class="btn order-button" onclick="payWithRave()" >Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="container footer-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a><img src="#" class="logo"></a>
+                    <p>We offer all sorts of programming books.</p>
+                </div>
+                <div class="col-md-2 footer-column">
+                    <p>Contact</p>
+                    <ul class="footer-list">
+                        <li>
+                            <a>Registration</a>
+                        </li>
+                        <li>
+                            <a>About Us</a>
+                        </li>
+                        <li>
+                            <a>Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 footer-column">
+                    <p>Help</p>
+                    <ul class="footer-list">
+                        <li>
+                            <a>Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a>How it works</a>
+                        </li>
+                        <li>
+                            <a>Terms & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-column">
+                    <p>Stay Connected</p>
+                    <div>
+                        <span>
+                            <i class="fab fa-facebook"></i>
+                        </span>
+                        <span>
+                            <i class="fab fa-instagram"></i>
+                        </span>
+                        <span>
+                            <i class="fab fa-twitter-square"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2 footer-column">
+                    <p>Back to top</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+    <script src="asset/js/app.js"></script>
+
+    <script>
+        document.getElementById('cartLength').innerHTML = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : 0;
+        let book = JSON.parse(localStorage.getItem('book'));
+
+        document.getElementById('book-title').innerHTML = book.name;
+        document.getElementById('book-description').innerHTML = book.description;
+        document.getElementById('book-price').innerHTML = book.price;
+        document.getElementById('book-img').src = book.img;
+
+        function addBook (id){
+            let cart = [];
+            let book = JSON.parse(localStorage.getItem('book'))
+            cart.push(book);
+            //localStorage.setItem('cart', JSON.stringify(cart));
+            let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            console.log(bookArray)
+            bookArray.map((s) => {
+               return  cart.push(s)
+            })
+            //cart.push(bookArray[0])
+            console.log(cart)
+            //console.log(bookArray.push(book))
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        
+        let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        function displayCartItem (cart) {
+            return `
+                <tr>
+                    <td><img src="${cart.img}" alt=""></td>
+                    <td class="td_style">${cart.name}</td>
+                    <td class="td_style">${cart.description}</td>
+                    <td class="td_style"><s>N</s>${cart.price}</td>
+                    <td class="td_style"><span class="btn btn-danger text-white">Delete</span></td>
+                </tr>
+            `
+        }
+
+        function renderCart() {
+            let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            document.getElementById('cartLength').innerHTML = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : 0;
+            document.getElementById("cartTable") ? document.getElementById("cartTable").innerHTML = `${bookArray.map(displayCartItem).join('')}` : '';
+        }
+        renderCart();
+
+        document.getElementById('total').innerHTML = total();
+
+        function total() {
+            let amount = JSON.parse(localStorage.getItem('cart')).reduce((acc, cur) => acc + cur.price, 0);
+            return amount;
+        }
+
+
+    function payWithRave() {
+      var x = getpaidSetup({
+        PBFPubKey:"FLWPUBK-64cf56cece44fe6351676a08a3f88eca-X",
+        customer_email: "judith@gmail.com",
+        amount: total(),
+        currency: "NGN",
+        txref: "rave-123456",
+        subaccounts: [
+        {
+          id: "RS_1770B4221C5E9352F4BAD9ED1AA689A5"
+        }
+        ],
+        meta: [{
+          metaname: "flightID",
+          metavalue: "AP1234"
+        }],
+        onclose: function() {},
+        callback: function(response) {
+            var txref = response.tx.txRef; // collect flwRef returned and pass to a server page to complete status check.
+            console.log("This is the response returned after a charge", response);
+            if (
+                response.tx.chargeResponseCode == "00" ||
+                response.tx.chargeResponseCode == "0"
+            ) {
+                // redirect to a success page
+                this.$router.push('Redirect'); 
+            } else {
+                // redirect to a failure page.
+            }
+
+            x.close(); // use this to close the modal immediately after payment.
+        }
+      });
+    }
+
+       
+
+    </script>
+
+</body>
+</html>
