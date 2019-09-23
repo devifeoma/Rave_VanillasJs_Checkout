@@ -14,7 +14,7 @@
 <body>
     <!-- Navbar starts here -->
     <nav class="navbar navbar-expand-lg navbar-nav navbar-style">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="#"><img src="asset/img/book.svg" style="width:40px; height: 40px; margin-left: 70px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
             <div class="col-md-6">
                 <div class="product-image">
                     <div class="">
-                        <img src="" id="book-img" class="single-product-style">
+                        <img src="" id="book-img" class="single-product-style mx-auto d-block" >
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="pull-left product-price"><s >N</s><b id="book-price"></b></h4>
+                            <h4 class="pull-left product-price"><s>N</s><b id="book-price"></b></h4>
                         </div>
                         <!-- <div class="col-md-6">
                             <h4 class="pull-right product-price"><s>N</s>3,000</h4>
@@ -123,10 +123,10 @@
                                     </tbody>
                                     <tbody>
                                         <tr>
-                                            <td><b>Total</b></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td><b>Total:</b></td>
                                             <td class="td_style"><b><s>N</s></b> <b id="total"></b></td>
                                         </tr>
                                     </tbody>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn continue-shopping">Continue Shopping</button>
-                    <button class="btn order-button" onclick="payWithRave()" >Checkout</button>
+                    <button class="btn order-button" onclick="payWithRave()" >Proceed to Checkout</button>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
         <div class="container footer-container">
             <div class="row">
                 <div class="col-md-3">
-                    <a><img src="#" class="logo"></a>
+                    <a href="#"><img src="asset/img/book.svg" style="width: 40px; height: 40px;"></a>
                     <p>We offer all sorts of programming books.</p>
                 </div>
                 <div class="col-md-2 footer-column">
@@ -216,37 +216,42 @@
         document.getElementById('book-price').innerHTML = book.price;
         document.getElementById('book-img').src = book.img;
 
+        // Add book to the cart
         function addBook (id){
             let cart = [];
-            let book = JSON.parse(localStorage.getItem('book'))
+            let book = JSON.parse(localStorage.getItem('book'));
+
             cart.push(book);
-            //localStorage.setItem('cart', JSON.stringify(cart));
             let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-            console.log(bookArray)
+
             bookArray.map((s) => {
                return  cart.push(s)
             })
-            //cart.push(bookArray[0])
-            console.log(cart)
-            //console.log(bookArray.push(book))
+
             localStorage.setItem('cart', JSON.stringify(cart));
             renderCart();
         }
 
-        
+        // Loop through and then display books in the cart
         let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         function displayCartItem (cart) {
             return `
                 <tr>
-                    <td><img src="${cart.img}" alt=""></td>
+                    <td><img src="${cart.img}" alt="" style="width: 50px; heigth: 70px;"></td>
                     <td class="td_style">${cart.name}</td>
-                   
                     <td class="td_style"><s>N</s>${cart.price}</td>
-                    <td class="td_style"><span class="btn btn-danger text-white">Delete</span></td>
+                    <td class="td_style"></td>
+                    <td class="td_style"><img src="asset/img/delete.svg" id="remove" style="width: 23px; heigth: 23px;"></td>
                 </tr>
             `
         }
 
+        // Remove an item from the cart
+        function removeBook (id){
+            JSON.parse(localStorage.getItem('cart'))
+        }
+
+        // Render th
         function renderCart() {
             let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
             document.getElementById('cartLength').innerHTML = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).length : 0;
@@ -254,6 +259,8 @@
         }
         renderCart();
 
+
+        // total price of items in the cart
         document.getElementById('total').innerHTML = total();
 
         function total() {
@@ -261,41 +268,41 @@
             return amount;
         }
 
+        // Rave API
+        function payWithRave() {
+            var x = getpaidSetup({
+                PBFPubKey:"FLWPUBK-64cf56cece44fe6351676a08a3f88eca-X",
+                customer_email: "judith@gmail.com",
+                amount: total(),
+                currency: "NGN",
+                txref: "rave-123456",
+                subaccounts: [
+                {
+                id: "RS_1770B4221C5E9352F4BAD9ED1AA689A5"
+                }
+                ],
+                meta: [{
+                metaname: "flightID",
+                metavalue: "AP1234"
+                }],
+                onclose: function() {},
+                callback: function(response) {
+                    var txref = response.tx.txRef; // collect flwRef returned and pass to a server page to complete status check.
+                    console.log("This is the response returned after a charge", response);
+                    if (
+                        response.tx.chargeResponseCode == "00" ||
+                        response.tx.chargeResponseCode == "0"
+                    ) {
+                        // redirect to a success page
+                        this.$router.push('Redirect'); 
+                    } else {
+                        // redirect to a failure page.
+                    }
 
-    function payWithRave() {
-      var x = getpaidSetup({
-        PBFPubKey:"FLWPUBK-64cf56cece44fe6351676a08a3f88eca-X",
-        customer_email: "judith@gmail.com",
-        amount: total(),
-        currency: "NGN",
-        txref: "rave-123456",
-        subaccounts: [
-        {
-          id: "RS_1770B4221C5E9352F4BAD9ED1AA689A5"
+                    x.close(); // use this to close the modal immediately after payment.
+                }
+            });
         }
-        ],
-        meta: [{
-          metaname: "flightID",
-          metavalue: "AP1234"
-        }],
-        onclose: function() {},
-        callback: function(response) {
-            var txref = response.tx.txRef; // collect flwRef returned and pass to a server page to complete status check.
-            console.log("This is the response returned after a charge", response);
-            if (
-                response.tx.chargeResponseCode == "00" ||
-                response.tx.chargeResponseCode == "0"
-            ) {
-                // redirect to a success page
-                this.$router.push('Redirect'); 
-            } else {
-                // redirect to a failure page.
-            }
-
-            x.close(); // use this to close the modal immediately after payment.
-        }
-      });
-    }
 
        
 
