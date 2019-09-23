@@ -50,18 +50,6 @@
         </div>
     </nav>
 
-    <!-- Search Bar -->
-    <!-- <div class="container search">
-        <div class="row">
-            <div class="input-group search-style">
-                <input type="text" class="form-control input-style" placeholder="Search for your favourite book"
-                    style="width: 60px;">
-                <div class="input-group-append">
-                    <button class="btn search-button">Search</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="spinner" id="spinner" hidden>
     </div>
@@ -248,9 +236,9 @@
         }
 
         // Remove an item from the cart
-        // function removeBook (id){
-        //     JSON.parse(localStorage.getItem('cart'))
-        // }
+        function removeBook (id){
+            JSON.parse(localStorage.getItem('cart'))
+        }
 
         // Render the cart after adding a book
         function renderCart() {
