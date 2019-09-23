@@ -60,15 +60,14 @@
             </div>
         </div>
     </div>
-    <!-- Search Bar -->
 
+    
     <!-- Product List starts here -->
     <div class="container product-list">
         <h1 class="text-center">Available Books</h1><br>
         <div class="row" id="app">
         </div>
     </div>
-    <!-- Product List ends here -->
 
     <!-- FOOTER -->
     <div class="footer">
@@ -218,7 +217,7 @@
                                     <p class="pull-right" id="price"><s>N</s>${book.price}</p>
                                 </div>
                             </div>
-                            <button class="btn order-button" onclick="viewBook(${book.id})">View Details</button>
+                            <button class="btn order-button" onclick="viewBook(${book.id})" onload="pageLoad()">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -227,16 +226,15 @@
 
         document.getElementById("app") ? document.getElementById("app").innerHTML = `${books.map(bookCard).join('')}` : '';
 
-
         function viewBook(index) {
             book = books.filter((e) => {
                 return e.id == index
             })[0]
             
             localStorage.setItem('book',JSON.stringify(book))
-
             window.location.href = "single-product.html";
         }
+
     </script>
 
 </body>
