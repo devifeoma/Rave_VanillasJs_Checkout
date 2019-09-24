@@ -221,6 +221,14 @@
             renderCart();
         }
 
+        // document.getElementById('del').innerHTML = deleteBook();
+        function deleteBook(id){
+            let book = JSON.parse(localStorage.getItem('cart'));
+            cart.slice(book);
+           
+        }
+        console.log(deleteBook)
+
         // Displays books in the cart
         let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         function displayCartItem (cart) {
@@ -230,15 +238,11 @@
                     <td class="td_style">${cart.name}</td>
                     <td class="td_style"><s>N</s>${cart.price}</td>
                     <td class="td_style"></td>
-                    <td class="td_style"><img src="asset/img/delete.svg" style="width: 23px; heigth: 23px;"></td>
+                    <td class="td_style"><img src="asset/img/delete.svg" style="width: 23px; heigth: 23px;" onclick="deleteBook(${book.id})"></td>
                 </tr>
             `
         }
 
-        // Remove an item from the cart
-        function removeBook (id){
-            JSON.parse(localStorage.getItem('cart'))
-        }
 
         // Render the cart after adding a book
         function renderCart() {
