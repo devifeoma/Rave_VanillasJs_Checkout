@@ -46,7 +46,6 @@
             </ul>
         </div>
     </nav>
-    <!-- Navbar ends here -->
 
     <!-- Search Bar -->
     <div class="container search">
@@ -69,7 +68,7 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <div class="footer">
         <div class="container footer-container">
             <div class="row">
@@ -135,7 +134,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+    <!-- <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script> -->
     <script src="asset/js/app.js"></script>
 
     <script>
@@ -211,13 +210,13 @@
                             <p>${book.description}</p>
                             <div class="row">
                                 <div class="col-6">
-                                <p class="pull-left"><s>N 10,000</s></p>
+                                    <p class="pull-left"><s>N 10,000</s></p>
                                 </div>
                                 <div class="col-6">
                                     <p class="pull-right" id="price"><s>N</s>${book.price}</p>
                                 </div>
                             </div>
-                            <button class="btn order-button" onclick="viewBook(${book.id})" onload="pageLoad()">View Details</button>
+                            <button class="btn order-button" onclick="viewBook(${book.id})">View Details</button>
                         </div>
                     </div>
                 </div>
