@@ -222,12 +222,20 @@
         }
 
         // document.getElementById('del').innerHTML = deleteBook();
-        function deleteBook(id){
-            let book = JSON.parse(localStorage.getItem('cart'));
-            cart.slice(book);
-           
+        function removeBook(id) {
+            // let cart = [];
+            let book = JSON.parse(localStorage.getItem('book'));
+            cart.push(book);
+
+            let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            bookArray.map((s) => {
+               return  cart.splice(s)
+            })
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
         }
-        console.log(deleteBook)
+
 
         // Displays books in the cart
         let bookArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
