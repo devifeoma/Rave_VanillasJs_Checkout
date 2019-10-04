@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="asset/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
+    <style>
+        /* .view{
+    
+    
+   
+    transform: translate(-50%, -50%)
+} */
+    </style>
+
 </head>
 
 <body>
     <!-- Navbar starts here -->
     <nav class="navbar navbar-expand-lg navbar-nav navbar-style">
-        <a class="navbar-brand" href="#"><img src="asset/img/book.svg" style="width:40px; height: 40px; margin-left: 70px;"></a>
+        <a class="navbar-brand" href="#"><img src="asset/img/book.svg"
+                style="width:40px; height: 40px; margin-left: 70px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,9 +49,9 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li> -->
-    
+
                 <li class="nav-item"><a class="nav-link navbar-link-style"><i class="fa fa-shopping-cart"
-                    aria-hidden="true" data-toggle="modal" data-target="#card"></i></a>
+                            aria-hidden="true" data-toggle="modal" data-target="#card"></i></a>
                 </li>
             </ul>
         </div>
@@ -51,16 +61,31 @@
     <div class="container search">
         <div class="row">
             <div class="input-group search-style">
+                <form name='search'></form>
+
+
                 <input type="text" class="form-control input-style" placeholder="Search for your favourite book"
-                    style="width: 60px;">
+                    style="width: 60px;" id="searchInput"></input>
+
+                </form>
+
+
+
+
                 <div class="input-group-append">
                     <button class="btn search-button">Search</button>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    
+            </div>
+
+        </div>
+
+
+    </div>
+    <div id="view"></div>
+
+
+
     <!-- Product List starts here -->
     <div class="container product-list">
         <h1 class="text-center">Available Books</h1><br>
@@ -138,66 +163,65 @@
     <script src="asset/js/app.js"></script>
 
     <script>
-        let books = [
-            {
+        let books = [{
                 id: 1,
                 img: "asset/img/cplus.jpg",
-                name:"C++",
-                price:1000,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "C++",
+                price: 1000,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 2,
                 img: "asset/img/eloquent-js.jpg",
-                name:"Eloquent JavaScript",
-                price:670,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "Eloquent JavaScript",
+                price: 670,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 3,
                 img: "asset/img/es6.jpg",
-                name:"ES6",
-                price:280,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "ES6",
+                price: 280,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 4,
                 img: "asset/img/java.jpg",
-                name:"Java",
-                price:760,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "Java",
+                price: 760,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 5,
                 img: "asset/img/jquery.jpg",
-                name:"jQuery",
-                price:900,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "jQuery",
+                price: 900,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 6,
                 img: "asset/img/python.jpg",
-                name:"Python",
-                price:290,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "Python",
+                price: 290,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 7,
                 img: "asset/img/java1.jpg",
-                name:"Java How To Program",
-                price:450,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "Java How To Program",
+                price: 450,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             },
             {
                 id: 8,
                 img: "asset/img/jquery-ui.jpg",
-                name:"jQuery UI",
-                price:500,
-                description:"Lorem in voluptate velit esse cillum dolore eu"
+                name: "jQuery UI",
+                price: 500,
+                description: "Lorem in voluptate velit esse cillum dolore eu"
             }
         ]
 
-        function bookCard (book){
+        function bookCard(book) {
             return `
                 <div class="col-md-3 mb-5">
                     <div class="card hover-design grow">
@@ -223,18 +247,62 @@
             `
         }
 
-        document.getElementById("app") ? document.getElementById("app").innerHTML = `${books.map(bookCard).join('')}` : '';
+        document.getElementById("app") ? document.getElementById("app").innerHTML = `${books.map(bookCard).join('')}` :
+            '';
 
         function viewBook(index) {
             book = books.filter((e) => {
                 return e.id == index
             })[0]
-            
-            localStorage.setItem('book',JSON.stringify(book))
+
+            localStorage.setItem('book', JSON.stringify(book))
             window.location.href = "single-product.html";
         }
 
+        const form = document.forms['search'];
+
+
+        var input = document.getElementById("searchInput");
+
+        input.addEventListener('change', search, false)
+        // form.addEventListener('change', search, false);
+
+        function search(event) {
+            // alert(`You Searched for: ${input.value}`);
+            event.preventDefault();
+
+            // var input = document.getElementById("searchInput").value;
+            var newBooks = books.filter((book) => book.name.toLowerCase() === String(input.value.toLowerCase()))
+
+            console.log(`${newBooks[0].description} ${newBooks[0].price}`)
+
+            let view = document.getElementById("view");
+            view.innerHTML = `<img src="${newBooks[0].img}"/>
+            <b></br>Description: ${newBooks[0].description} 
+            
+        </br> Price: ${newBooks[0].price} `
+
+
+
+
+            view.classList.toggle('view');
+
+            // let view=document.getElementsByClassName("view");
+            // view.innerHTML=newBooks
+
+            // if(input===newBooks.name){
+            //     console.log("changing")
+            // }else{
+            //     console.log(newBooks.name)
+            // }
+
+            //     newBooks= books.map((books)=>books.name);
+
+            //  newBooks.includes(input)? alert("changing"):alert(input)
+
+        }
     </script>
 
 </body>
+
 </html>
